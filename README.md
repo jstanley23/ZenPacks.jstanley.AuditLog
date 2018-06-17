@@ -24,6 +24,8 @@ This action performs a search using the Kibana REST API against the \_msearch ur
 
 #### Query payload
 The search query is also provided in the streaming window output.
+> The deviceId that is used, is the DeviceUid minus /zport/dmd
+
 ```python
 {
     "query": {
