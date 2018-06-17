@@ -17,7 +17,8 @@ class ccClient(object):
         url = "https://{}:{}/login".format(self.host, self.port)
         data = json.dumps({'Username': self.user, 'Password': self.password})
         headers = { 'Content-Type': 'application/json' }
-        self.session.post(url, data=data, headers=headers, verify=False)
+        request = self.session.post(url, data=data, headers=headers, verify=False)
+        return request.ok
 
     def getKibanaLogs(self, searchMessage):
         uri='/api/controlplane/kibana/elasticsearch/_msearch'
@@ -71,6 +72,10 @@ class ccClient(object):
             return [results]
         responses = results.get('responses', [])
         for response in responses:
+            checkError = response.get('error')
+            if checkError:
+                output.append(json.dumps(checkError, indent=4, sort_keys=True))
+                continue
             firstHits = response.get('hits', {})
             hits = firstHits.get('hits', [])
             for hit in hits:
