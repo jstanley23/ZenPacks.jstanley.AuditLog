@@ -16,9 +16,11 @@ Additional button to the device page to pull audit logs from Kibana for that dev
 ![alt text](screenshots/auditLogButton_and_Output.png "Audit Log Button and Output Example")
 
 ### Kibana Search Information
-This action performs a search using the Kibana REST API.
+This action performs a search using the Kibana REST API against the \_msearch uri using the following headers:
+* kbn-xsrf: reporting
+* Content-Type: application/json
 
-####Query payload
+###Query payload
 ```python
 {
             "query": {
