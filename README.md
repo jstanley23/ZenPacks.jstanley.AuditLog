@@ -30,7 +30,7 @@ The search query is also provided in the streaming window output.
         "filtered": {
             "query": {
                 "query_string": {
-                    "query": "fields.type: *zenossaudit* AND message: *device=<deviceUid>*",
+                    "query": "fields.type: *zenossaudit* AND message: *<deviceId>*",
                     "analyze_wildcard": True
                 }
             }
