@@ -1,0 +1,14 @@
+name: ZenPacks.jstanley.AuditLog
+zProperties:
+  DEFAULTS:
+    category: Audit Log
+    type: string
+  zCCHost: {}
+  zCCPort:
+    type: int
+    default: 443
+  zCCUser:
+    default: ccuser
+  zCCPass:
+    type: password
+    default: password

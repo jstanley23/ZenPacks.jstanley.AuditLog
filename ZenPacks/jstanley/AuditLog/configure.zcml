@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configure
+    xmlns="http://namespaces.zope.org/browser"
+    xmlns:zope="http://namespaces.zope.org/zope"
+    >
+
+    <include package="Products.ZenUtils.extdirect.zope" file="meta.zcml"/>
+
+    <resourceDirectory
+        name="auditlogbtn"
+        directory="resources"
+        />
+
+    <viewlet
+        name="js-auditlogbtn"
+        paths="/++resource++auditlogbtn/AuditLogButton.js"
+        weight="10"
+        for="Products.ZenModel.Device.Device"
+        manager="Products.ZenUI3.browser.interfaces.IJavaScriptSrcManager"
+        class="Products.ZenUI3.browser.javascript.JavaScriptSrcBundleViewlet"
+        permission="zope2.Public"
+        />
+
+    <zope:adapter
+        name='auditlogs'
+        provides=".facades.IAuditLogFacade"
+        for="*"
+        factory=".facades.AuditLogFacade"
+        />
+
+    <page
+        name="run_auditLogs"
+        for="*"
+        class=".StreamingViews.AuditLogView"
+        permission="zope2.Public"
+        />
+</configure>
