@@ -25,29 +25,29 @@ This action performs a search using the Kibana REST API against the \_msearch ur
 #### Query payload
 ```python
 {
+    "query": {
+        "filtered": {
             "query": {
-                "filtered": {
-                    "query": {
-                        "query_string": {
-                            "query": "*zenossaudit* AND *device=<deviceUid>*",
-                            "analyze_wildcard": True
-                        }
-                    }
+                "query_string": {
+                    "query": "*zenossaudit* AND *device=<deviceUid>*",
+                    "analyze_wildcard": True
                 }
-            },
-            "size": 500,
-            "sort":[
-                {   
-                    "@timestamp": {
-                        "order": "desc",
-                        "unmapped_type":"boolean"
-                    }
-                }
-            ],
-            "fields": ["message"],
-            "script_fields": {},
-            "fielddata_fields": ["@timestamp"]
+            }
         }
+    },
+    "size": 500,
+    "sort":[
+        {   
+            "@timestamp": {
+                "order": "desc",
+                "unmapped_type":"boolean"
+            }
+        }
+    ],
+    "fields": ["message"],
+    "script_fields": {},
+    "fielddata_fields": ["@timestamp"]
+}
 ```
 
 ## Usage
