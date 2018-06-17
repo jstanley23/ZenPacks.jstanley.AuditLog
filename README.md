@@ -2,16 +2,18 @@
 
 AuditLog ZenPack adds a new button to the device page to pull audit logs from Kibana for that device.
 
-## Releases {#releases-id}
+## Releases
 Version 1.0.0
 > Released: 2018/6/18
+
 > Compatible with Zenoss 6.2
+
 > Requires: ZenPackLib ZenPack (https://www.zenoss.com/product/zenpacks/zenpacklib)
 
-## Features {#features-id}
+## Features
 Additional button to the device page to pull audit logs from Kibana for that device.
 
-## Usage {#usage-id}
+## Usage
 After installing the ZenPack, navigate to Infrastructure and at root device class level (/Devices) set the following zProperties based on your Control Center setup.
 * zCCHost
 * zCCPort
@@ -19,7 +21,7 @@ After installing the ZenPack, navigate to Infrastructure and at root device clas
 * zCCPass
  > These settings will usually be the same you have used on your ControlCenter device under /ControlCenter
 
-## Installed Items {#installed-items-id}
+## Installed Items
 ### zProperties
 * zCCHost
 * zCCPort
