@@ -5,9 +5,9 @@ AuditLog ZenPack adds a new button to the device page to pull audit logs from Ki
 ## Releases
 Version 1.0.0
 > Released: 2018/6/18
-
+>
 > Compatible with Zenoss 6.2
-
+>
 > Requires: ZenPackLib ZenPack (https://www.zenoss.com/product/zenpacks/zenpacklib)
 
 ## Features
