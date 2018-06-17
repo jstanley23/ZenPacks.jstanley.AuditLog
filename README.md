@@ -59,6 +59,8 @@ After installing the ZenPack, navigate to Infrastructure and at root device clas
 * zCCPass
  > These settings will usually be the same you have used on your ControlCenter device under /ControlCenter
 
+For a user to see the button, they must have the "Change Device" permission.
+
 ## Installed Items
 ### zProperties
 * zCCHost
