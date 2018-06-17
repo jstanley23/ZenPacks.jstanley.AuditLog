@@ -26,9 +26,13 @@ class ccClient(object):
             "Content-Type": "application/json",
         }
         url = "https://{}:{}/{}".format(self.host, self.port, uri)
-        data = self.buildKibanaPayload(searchMessage)
-        output = self.session.post(url, data=data, headers=headers, verify=False)
-        return self.prettifyKibanaOutput(output.json())
+        query, data = self.buildKibanaPayload(searchMessage)
+        request = self.session.post(url, data=data, headers=headers, verify=False)
+        output = self.prettifyKibanaOutput(request.json())
+        query = "Kibana query: {0}".format(query)
+        output.insert(0, '\n')
+        output.insert(0, query)
+        return output
 
     def buildKibanaPayload(self, searchMessage, fieldType='zenossaudit'):
         idx = '{"index":"*"}'
@@ -58,7 +62,7 @@ class ccClient(object):
             "fielddata_fields": ["@timestamp"]
         }
         queryJson = json.dumps(queryDict)
-        return  "{0}\n{1}\n".format(idx, queryJson)
+        return  (queryString, "{0}\n{1}\n".format(idx, queryJson))
 
     def prettifyKibanaOutput(self, results):
         output = []
@@ -76,6 +80,6 @@ class ccClient(object):
                 if isinstance(message, list):
                     output.append(str(message[0]))
                 else:
-                    output.append(message)
+                    output.append(str(message))
         return output
 

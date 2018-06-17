@@ -8,7 +8,7 @@ class AuditLogView(StreamingView):
     Accepts a list of uids to get audit logs for.
     """
     def stream(self):
-        self.write('Starting to retrieve logs...')
+        self.write('Starting to retrieve logs...\n')
         facade = getFacade('auditlogs', self.context)
         data = unjson(self.request.get('data'))
         deviceUids = data['uids']
@@ -16,4 +16,4 @@ class AuditLogView(StreamingView):
             output = facade.getLogs(deviceUid)
             for line in output:
                 self.write(line)
-        self.write('Finished.')
+        self.write('\nFinished.')

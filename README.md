@@ -23,6 +23,7 @@ This action performs a search using the Kibana REST API against the \_msearch ur
 * Content-Type: application/json
 
 #### Query payload
+The search query is also provided in the streaming window output.
 ```python
 {
     "query": {
