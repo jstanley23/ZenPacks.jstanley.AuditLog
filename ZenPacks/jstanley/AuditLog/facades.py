@@ -15,7 +15,6 @@ class AuditLogFacade(ZuulFacade):
     implements(IAuditLogFacade)
 
     def getLogs(self, deviceUid):
-        searchString = 'device={0}'.format(deviceUid)
         device = self.context.unrestrictedTraverse(deviceUid)
         if not device.zCCHost:
             return ['Must setup Audit zProperties (zCChost, zCCPort, zCCUser, zCCPass)']
@@ -27,6 +26,6 @@ class AuditLogFacade(ZuulFacade):
             device.zCCPass
         )
         kibana.login()
-        logs = kibana.getKibanaLogs(searchString)
+        logs = kibana.getKibanaLogs(deviceUid)
         return logs
 

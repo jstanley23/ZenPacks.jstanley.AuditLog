@@ -36,7 +36,8 @@ class ccClient(object):
 
     def buildKibanaPayload(self, searchMessage, fieldType='zenossaudit'):
         idx = '{"index":"*"}'
-        queryString = "fields.type: *{0}* AND message: *{1}*".format(fieldType, searchMessage)
+        searchMessage = searchMessage.replace('/zport/dmd', '')
+        queryString = 'fields.type: *{0}* AND message: "{1}"'.format(fieldType, searchMessage)
         queryDict = {
             "query": {
                 "filtered": {
