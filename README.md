@@ -29,7 +29,7 @@ This action performs a search using the Kibana REST API against the \_msearch ur
         "filtered": {
             "query": {
                 "query_string": {
-                    "query": "*zenossaudit* AND *device=<deviceUid>*",
+                    "query": "fields.type: *zenossaudit* AND message: *device=<deviceUid>*",
                     "analyze_wildcard": True
                 }
             }

@@ -32,7 +32,7 @@ class ccClient(object):
 
     def buildKibanaPayload(self, searchMessage, fieldType='zenossaudit'):
         idx = '{"index":"*"}'
-        queryString = "*{0}* AND *{1}*".format(fieldType, searchMessage)
+        queryString = "fields.type: *{0}* AND message: *{1}*".format(fieldType, searchMessage)
         queryDict = {
             "query": {
                 "filtered": {
