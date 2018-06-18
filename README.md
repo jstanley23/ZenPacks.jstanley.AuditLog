@@ -39,11 +39,11 @@ The search query is also provided in the streaming window output.
         }
     },
     "size": 500,
-    "sort":[
+    "sort": [
         {   
             "@timestamp": {
                 "order": "desc",
-                "unmapped_type":"boolean"
+                "unmapped_type": "boolean"
             }
         }
     ],
