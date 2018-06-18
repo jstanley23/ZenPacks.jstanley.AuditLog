@@ -6,6 +6,8 @@ from Products.Zuul.interfaces import IFacade
 from .lib.ccClient import ccClient
 
 
+_ZPROPS = ['zCChost', 'zCCPort', 'zCCUser', 'zCCPass']
+
 class IAuditLogFacade(IFacade):
     def getLogs(self, deviceUid):
         """Pulls audit logs for device"""
@@ -17,7 +19,8 @@ class AuditLogFacade(ZuulFacade):
     def getLogs(self, deviceUid):
         device = self.context.unrestrictedTraverse(deviceUid)
         if not device.zCCHost:
-            return ['Must setup Audit zProperties (zCChost, zCCPort, zCCUser, zCCPass)']
+            msg = 'Must setup Audit zProperties (%s)' % ', '.join(_ZPROPS)
+            return [msg]
 
         kibana = ccClient(
             device.zCCHost,

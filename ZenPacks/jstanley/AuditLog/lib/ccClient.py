@@ -17,7 +17,12 @@ class ccClient(object):
         url = "https://{}:{}/login".format(self.host, self.port)
         data = json.dumps({'Username': self.user, 'Password': self.password})
         headers = { 'Content-Type': 'application/json' }
-        request = self.session.post(url, data=data, headers=headers, verify=False)
+        request = self.session.post(
+            url,
+            data=data,
+            headers=headers,
+            verify=False
+        )
         return request.ok
 
     def getKibanaLogs(self, searchMessage):
@@ -28,7 +33,12 @@ class ccClient(object):
         }
         url = "https://{}:{}/{}".format(self.host, self.port, uri)
         query, data = self.buildKibanaPayload(searchMessage)
-        request = self.session.post(url, data=data, headers=headers, verify=False)
+        request = self.session.post(
+            url,
+            data=data,
+            headers=headers,
+            verify=False
+        )
         output = self.prettifyKibanaOutput(request.json())
         query = "Kibana query: {0}".format(query)
         output.insert(0, '\n')
@@ -38,7 +48,10 @@ class ccClient(object):
     def buildKibanaPayload(self, searchMessage, fieldType='zenossaudit'):
         idx = '{"index":"*"}'
         searchMessage = searchMessage.replace('/zport/dmd', '')
-        queryString = 'fields.type: *{0}* AND message: "{1}"'.format(fieldType, searchMessage)
+        queryString = 'fields.type: *{0}* AND message: "{1}"'.format(
+            fieldType,
+            searchMessage
+        )
         queryDict = {
             "query": {
                 "filtered": {
@@ -74,7 +87,11 @@ class ccClient(object):
         for response in responses:
             checkError = response.get('error')
             if checkError:
-                output.append(json.dumps(checkError, indent=4, sort_keys=True))
+                output.append(json.dumps(
+                    checkError,
+                    indent=4,
+                    sort_keys=True
+                ))
                 continue
             firstHits = response.get('hits', {})
             hits = firstHits.get('hits', [])
