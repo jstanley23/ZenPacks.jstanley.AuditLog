@@ -8,6 +8,7 @@ from .lib.ccClient import ccClient
 
 _ZPROPS = ['zCChost', 'zCCPort', 'zCCUser', 'zCCPass']
 
+
 class IAuditLogFacade(IFacade):
     def getLogs(self, deviceUid):
         """Pulls audit logs for device"""
@@ -35,4 +36,3 @@ class AuditLogFacade(ZuulFacade):
 
         logs = kibana.getKibanaLogs(deviceUid)
         return logs
-

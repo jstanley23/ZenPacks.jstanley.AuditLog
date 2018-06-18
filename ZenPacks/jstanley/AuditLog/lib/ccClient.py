@@ -16,7 +16,7 @@ class ccClient(object):
         """Login."""
         url = "https://{}:{}/login".format(self.host, self.port)
         data = json.dumps({'Username': self.user, 'Password': self.password})
-        headers = { 'Content-Type': 'application/json' }
+        headers = {'Content-Type': 'application/json'}
         request = self.session.post(
             url,
             data=data,
@@ -26,7 +26,7 @@ class ccClient(object):
         return request.ok
 
     def getKibanaLogs(self, searchMessage):
-        uri='/api/controlplane/kibana/elasticsearch/_msearch'
+        uri = '/api/controlplane/kibana/elasticsearch/_msearch'
         headers = {
             "kbn-xsrf": "reporting",
             "Content-Type": "application/json",
@@ -64,11 +64,11 @@ class ccClient(object):
                 }
             },
             "size": 500,
-            "sort":[
-                {   
+            "sort": [
+                {
                     "@timestamp": {
                         "order": "desc",
-                        "unmapped_type":"boolean"
+                        "unmapped_type": "boolean"
                     }
                 }
             ],
@@ -77,7 +77,7 @@ class ccClient(object):
             "fielddata_fields": ["@timestamp"]
         }
         queryJson = json.dumps(queryDict)
-        return  (queryString, "{0}\n{1}\n".format(idx, queryJson))
+        return (queryString, "{0}\n{1}\n".format(idx, queryJson))
 
     def prettifyKibanaOutput(self, results):
         output = []
@@ -105,4 +105,3 @@ class ccClient(object):
                 else:
                     output.append(str(message))
         return output
-
