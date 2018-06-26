@@ -1,0 +1,10 @@
+*.log
+*.swp
+*.egg-info/
+MANIFEST.in
+dist/
+build/
+*.pyc
+*.pyo
+*DS_Store*
+*.sublime.*
