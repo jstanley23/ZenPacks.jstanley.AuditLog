@@ -34,5 +34,5 @@ class AuditLogFacade(ZuulFacade):
         if not login:
             return ['Login failed, check zProperties']
 
-        logs = kibana.getKibanaLogs(deviceUid)
+        logs = kibana.getKibanaLogs(device.id)
         return logs
