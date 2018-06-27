@@ -8,4 +8,8 @@ schema = CFG.zenpack_module.schema
 
 _ZPROPS = ['zCCHost', 'zCCPort', 'zCCUser', 'zCCPass']
 
-LOG.debug('Populate zProperties ({}) at /Devices'.format(', '.join(_ZPROPS)))
+class ZenPack(schema.ZenPack):
+
+    def install(self, app):
+        super(ZenPack, self).install(app)
+        LOG.info('Populate zProperties ({}) at /Devices'.format(', '.join(_ZPROPS)))
