@@ -25,46 +25,6 @@ Version 1.0.0
 ## Features
 Additional button to the device page to pull audit logs from Kibana for that device.
 
-![alt text](screenshots/auditLogButton_and_Output.png "Audit Log Button and Output Example")
-
-### Kibana Search Information
-This action performs a search using the Kibana REST API against the \_msearch uri.
-
-#### Headers
-* kbn-xsrf: reporting
-* Content-Type: application/json
-
-#### Query payload
-The search query is also provided in the streaming window output.
-> The deviceId that is used, is the DeviceUid minus /zport/dmd
-
-```python
-{
-    "query": {
-        "filtered": {
-            "query": {
-                "query_string": {
-                    "query": "fields.type: *zenossaudit* AND message: *<deviceId>*",
-                    "analyze_wildcard": True
-                }
-            }
-        }
-    },
-    "size": 500,
-    "sort": [
-        {   
-            "@timestamp": {
-                "order": "desc",
-                "unmapped_type": "boolean"
-            }
-        }
-    ],
-    "fields": ["message"],
-    "script_fields": {},
-    "fielddata_fields": ["@timestamp"]
-}
-```
-
 ## Usage
 After installing the ZenPack, navigate to Infrastructure and at root device class level (/Devices) set the following zProperties based on your Control Center setup.
 * zCCHost
@@ -83,5 +43,8 @@ For a user to see the button, they must have the "Change Device" permission.
 * zCCPass
 
 ## Changes
+### 1.0.2
+* Updated to use new URL for Zenoss 6.6.0
+
 ### 1.0.0
 * Initial release.
