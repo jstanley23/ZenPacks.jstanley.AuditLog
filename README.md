@@ -3,6 +3,13 @@
 AuditLog ZenPack adds a new button to the device page to pull audit logs from Kibana for that device.
 
 ## Releases
+Version 1.0.2
+> Released: 2022/2/15
+> * Updated to use internal/bsearch API to work with newer version
+> Compatible with Zenoss 6.6.0
+> Tested in Zenoss
+> * 6.6.0
+
 Version 1.0.0
 > Released: 2018/6/18
 >
