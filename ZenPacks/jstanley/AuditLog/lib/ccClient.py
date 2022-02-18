@@ -32,6 +32,9 @@ class ccClient(object):
             'content-type': 'application/json',
             'user-agent': 'Mozilla/5.0',
             'kbn-version': '7.12.0',
+            'sec-fetch-site': 'same-origin',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-dest': 'empty',
             'accept': '*/*',
             'origin': 'https://%s:%s' % (self.host, self.port),
             'referer': 'https://%s:%s/api/controlplane/kibana/app/discover' % (self.host, self.port),
@@ -50,6 +53,8 @@ class ccClient(object):
         except Exception as e:
             output = ["Request to %s failed: %s" % (url, e.message)]
         query = "Kibana query: {0}".format(query)
+        output.insert(0, '\n')
+        output.insert(0, "Response Status: %s" % request.status_code)
         output.insert(0, '\n')
         output.insert(0, query)
         return output
@@ -95,7 +100,7 @@ class ccClient(object):
                                     }
                                 ],
                             },
-                            u'index': u'logstash-*',
+                            u'index': u'*',
                         }
                     }
                 }
