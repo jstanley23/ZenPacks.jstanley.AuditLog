@@ -41,9 +41,6 @@ class ccClient(object):
             'kbn-version': '7.12.0',
             'accept': '*/*',
             'origin': 'https://%s:%s' % (self.host, self.port),
-            'sec-fetch-site': 'same-origin',
-            'sec-fetch-mode': 'cors',
-            'sec-fetch-dest': 'empty',
             'referer': 'https://%s:%s/api/controlplane/kibana/app/discover' % (self.host, self.port),
         }
         url = "https://{}:{}/{}".format(self.host, self.port, uri)
@@ -105,7 +102,7 @@ class ccClient(object):
                                     }
                                 ],
                             },
-                            u'index': u'logstash-*',
+                            u'index': u'*',
                         }
                     }
                 }
