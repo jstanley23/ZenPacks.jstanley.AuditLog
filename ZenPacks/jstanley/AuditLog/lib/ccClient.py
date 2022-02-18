@@ -48,15 +48,17 @@ class ccClient(object):
                 headers=headers,
                 verify=False
             )
+            request = self.session.post(
+                url,
+                data=data,
+                headers=headers,
+                verify=False
+            )
             request.raise_for_status()
             output = self.prettifyKibanaOutput(request.json())
         except Exception as e:
             output = ["Request to %s failed: %s" % (url, e.message)]
         query = "Kibana query: {0}".format(query)
-        output.insert(0, '\n')
-        output.insert(0, "Response Content: %s" % request.content)
-        output.insert(0, '\n')
-        output.insert(0, "Response Status: %s" % request.status_code)
         output.insert(0, '\n')
         output.insert(0, query)
         return output
