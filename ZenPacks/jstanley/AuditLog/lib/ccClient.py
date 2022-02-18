@@ -95,7 +95,7 @@ class ccClient(object):
                                     }
                                 ],
                             },
-                            u'index': u'*',
+                            u'index': u'logstash-*',
                         }
                     }
                 }
