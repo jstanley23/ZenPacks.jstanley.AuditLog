@@ -25,13 +25,6 @@ class ccClient(object):
         )
         return request.ok
 
-    def getStatus(self, request):
-        if request.ok:
-            return (True, "")
-        
-        msg = "%s - %s" % (request.status_code, request.content)
-        return (False, msg)
-
     def getKibanaLogs(self, searchMessage):
         uri = 'api/controlplane/kibana/internal/bsearch'
         headers = {

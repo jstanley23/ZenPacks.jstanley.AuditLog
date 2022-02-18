@@ -35,7 +35,4 @@ class AuditLogFacade(ZuulFacade):
             return ['Login failed, check zProperties']
 
         logs = kibana.getKibanaLogs(device.id)
-        status = kibana.getStatus()
-        if not status[0]:
-            return ["Request failed\n%s" % status[1]]
         return logs
