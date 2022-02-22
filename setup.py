@@ -3,13 +3,13 @@
 # or saved.  Do not modify them directly here.
 # NB: PACKAGES is deprecated
 NAME = "ZenPacks.jstanley.AuditLog"
-VERSION = "1.0.2"
+VERSION = "1.0.3"
 AUTHOR = "Jay Stanley (github.com/jstanley23)"
 LICENSE = "GPLv2+"
 NAMESPACE_PACKAGES = ['ZenPacks', 'ZenPacks.jstanley']
 PACKAGES = ['ZenPacks', 'ZenPacks.jstanley', 'ZenPacks.jstanley.AuditLog']
 INSTALL_REQUIRES = ['ZenPacks.zenoss.ZenPackLib']
-COMPAT_ZENOSS_VERS = ">=6.1.0"
+COMPAT_ZENOSS_VERS = ">=6.6.0"
 PREV_ZENPACK_NAME = ""
 # STOP_REPLACEMENTS
 ################################

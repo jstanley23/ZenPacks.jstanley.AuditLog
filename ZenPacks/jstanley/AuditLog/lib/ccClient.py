@@ -36,18 +36,14 @@ class ccClient(object):
             'sec-fetch-mode': 'cors',
             'sec-fetch-dest': 'empty',
             'accept': '*/*',
+            'pragma': 'no-cache',
+            'cache-control': 'no-cache',
             'origin': 'https://%s:%s' % (self.host, self.port),
             'referer': 'https://%s:%s/api/controlplane/kibana/app/discover' % (self.host, self.port),
         }
         url = "https://{}:{}/{}".format(self.host, self.port, uri)
         query, data = self.buildKibanaPayload(searchMessage)
         try:
-            request = self.session.post(
-                url,
-                data=data,
-                headers=headers,
-                verify=False
-            )
             request = self.session.post(
                 url,
                 data=data,
