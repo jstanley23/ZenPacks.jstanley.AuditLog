@@ -15,5 +15,5 @@ class AuditLogView(StreamingView):
         for deviceUid in deviceUids:
             output = facade.getLogs(deviceUid)
             for line in output:
-                self.write(line)
+                self.write(str(line))
         self.write('\nFinished.')
