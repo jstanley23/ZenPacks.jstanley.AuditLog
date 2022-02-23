@@ -1,5 +1,6 @@
 import json
 import requests
+import time
 import urllib3
 
 
@@ -43,17 +44,39 @@ class ccClient(object):
         }
         url = "https://{}:{}/{}".format(self.host, self.port, uri)
         query, data = self.buildKibanaPayload(searchMessage)
+        isRunning = True
+        isPartial = True
+        attempts = 10
+        output = []
+
+        # bsearch can return results while the query is still running
+        # We loop through requests until the response say it is done
         try:
-            request = self.session.post(
-                url,
-                data=data,
-                headers=headers,
-                verify=False
-            )
-            request.raise_for_status()
-            output = self.prettifyKibanaOutput(request.json())
+            while isPartial and isRunning and attempts != 0:
+                request = self.session.post(
+                    url,
+                    data=data,
+                    headers=headers,
+                    verify=False
+                )
+                request.raise_for_status()
+                content = request.json()
+                result = content.get('result', False)
+                if result:
+                    isRunning = result.get('isRunning', False)
+                    isPartial = result.get('isPartial', False)
+
+                attempts -= 1
+                if attempts <= 0:
+                    raise Exception("Query results have not fully returned, wait a few minutes and try again.")
+
+                if isRunning:
+                    time.sleep(5)
+
+            output.extend(self.prettifyKibanaOutput(content))
         except Exception as e:
             output = ["Request to %s failed: %s" % (url, e.message)]
+
         query = "Kibana query: {0}".format(query)
         output.insert(0, '\n')
         output.insert(0, query)
