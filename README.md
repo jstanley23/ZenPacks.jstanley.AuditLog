@@ -3,6 +3,10 @@
 AuditLog ZenPack adds a new button to the device page to pull audit logs from Kibana for that device.
 
 ## Releases
+Version 1.0.4
+> Released: 2022/11/18
+> * Updated to work with Control Center 1.10.2
+
 Version 1.0.3
 > Released: 2022/2/15
 > * Updated to use internal/bsearch API to work with newer version
@@ -43,6 +47,9 @@ For a user to see the button, they must have the "Change Device" permission.
 * zCCPass
 
 ## Changes
+### 1.0.4
+* Updated to work with Control Center 1.10.2 (Removed version from header)
+
 ### 1.0.3
 * Updated to use new URL for Zenoss 6.6.0
 
