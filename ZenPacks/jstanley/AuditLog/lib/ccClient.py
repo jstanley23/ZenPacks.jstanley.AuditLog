@@ -32,7 +32,7 @@ class ccClient(object):
             'authority': '%s:%s' % (self.host, self.port),
             'content-type': 'application/json',
             'user-agent': 'Mozilla/5.0',
-            'kbn-version': '7.12.0',
+            'kbn-xsrf': 'true',
             'sec-fetch-site': 'same-origin',
             'sec-fetch-mode': 'cors',
             'sec-fetch-dest': 'empty',
