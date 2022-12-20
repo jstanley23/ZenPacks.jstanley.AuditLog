@@ -47,6 +47,9 @@ For a user to see the button, they must have the "Change Device" permission.
 * zCCPass
 
 ## Changes
+### 1.0.5
+* Remove permission to view button
+
 ### 1.0.4
 * Updated to work with Control Center 1.10.2 (Removed version from header)
 
