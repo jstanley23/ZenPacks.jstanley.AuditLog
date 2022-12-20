@@ -16,7 +16,6 @@
                 xtype: 'button',
                 id: 'auditlog_button',
                 text: _t('Audit Log'),
-                hidden: Zenoss.Security.doesNotHavePermission('Change Device'),
                 handler: auditLog
             })
         });
